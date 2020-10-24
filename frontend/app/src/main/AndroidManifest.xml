@@ -9,14 +9,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Songs"
+        android:theme="@style/Theme.AppCompat"
         android:usesCleartextTraffic="true">
         <activity android:name=".SongDetailActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SongListActivity" />
+                android:value=".SongActivityList" />
         </activity>
-        <activity android:name=".SongListActivity">
+        <activity android:name=".SongActivityList">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

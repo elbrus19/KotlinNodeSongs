@@ -8,7 +8,7 @@ import com.eliel.songs.models.Song
 import org.json.JSONObject
 
 class SongServiceImpl: ISongService {
-    override fun getAll(context: Context, completionHandler: (response: ArrayList<Song>?) -> Unit) {
+    override fun getAll(context: Context, completionHandler: (response: ArrayList<Song>) -> Unit) {
         val path = SongSingleton.getInstance(context).baseUrl + "/api/songs"
         val arrayRequest = JsonArrayRequest(
             Request.Method.GET, path, null,
@@ -86,7 +86,6 @@ class SongServiceImpl: ISongService {
     override fun createSong(context: Context, song: Song, completionHandler: () -> Unit) {
         val path = SongSingleton.getInstance(context).baseUrl + "/api/songs"
         val songJson: JSONObject = JSONObject()
-        songJson.put("id", song.id.toString())
         songJson.put("name", song.name)
         songJson.put("artist", song.artist)
         songJson.put("lenght", song.lenght)

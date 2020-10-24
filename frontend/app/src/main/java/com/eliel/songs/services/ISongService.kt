@@ -4,7 +4,7 @@ import android.content.Context
 import com.eliel.songs.models.Song
 
 interface ISongService {
-    fun getAll(context: Context, completionHandler: (response: ArrayList<Song>?) -> Unit)
+    fun getAll(context: Context, completionHandler: (response: ArrayList<Song>) -> Unit)
 
     fun getById(context: Context, songId: Int, completionHandler: (response: Song?) -> Unit)
 

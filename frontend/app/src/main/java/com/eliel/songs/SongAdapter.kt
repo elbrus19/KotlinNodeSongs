@@ -5,9 +5,11 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.eliel.songs.models.Song
+import com.squareup.picasso.Picasso
 
 class SongAdapter(var songList: ArrayList<Song>, val context: Context) : RecyclerView.Adapter<SongAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,20 +26,25 @@ class SongAdapter(var songList: ArrayList<Song>, val context: Context) : Recycle
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindView(b: Song, context: Context){
+        fun bindView(s: Song, context: Context){
+            val url = "http://192.168.1.40:8080/img/song_"
             val txt_name: TextView = itemView.findViewById(R.id.textViewName)
             val txt_artist: TextView = itemView.findViewById(R.id.textViewArtist)
             val txt_lenght: TextView = itemView.findViewById(R.id.textViewLenght)
             val txt_year: TextView = itemView.findViewById(R.id.textViewYear)
+            val img: ImageView = itemView.findViewById(R.id.imageViewSong)
 
-            txt_name.text = b.name
-            txt_artist.text = b.artist
-            txt_lenght.text = b.lenght
-            txt_year.text = b.year
+            txt_name.text = s.name
+            txt_artist.text = s.artist
+            txt_lenght.text = s.lenght
+            txt_year.text = s.year
+
+            val imageUrl = url + s.id.toString() + ".jpg"
+            Picasso.with(context).load(imageUrl).into(img);
 
             itemView.setOnClickListener {
                 val intent = Intent(context, SongDetailActivity::class.java)
-                intent.putExtra("songId", b.id)
+                intent.putExtra("songId", s.id)
                 intent.putExtra("state", "Showing")
                 context.startActivity(intent)
             }
